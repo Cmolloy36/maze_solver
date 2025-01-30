@@ -12,12 +12,17 @@ class Cell(object):
         self._y1 = y1
         self._y2 = y2
         self._visited = False
+        self._center = None
         if self._x1 is not None:
             self._center = Point((self._x1 + self._x2)//2,(self._y1 + self._y2)//2)
         self._win = win
 
 
     def draw(self,x1,x2,y1,y2):
+        self._x1 = x1
+        self._x2 = x2
+        self._y1 = y1
+        self._y2 = y2
         point_TL = Point(x1,y1)
         point_BL = Point(x1,y2)
         point_BR = Point(x2,y2)
@@ -52,6 +57,12 @@ class Cell(object):
             line.draw(self._win.get_canvas(),fill_color='white')
 
     def draw_move(self, to_cell, undo=False):
+            if self._center is None:
+                self._center = Point((self._x1 + self._x2)//2,(self._y1 + self._y2)//2)
+
+            if to_cell._center is None:
+                to_cell._center = Point((to_cell._x1 + to_cell._x2)//2,(to_cell._y1 + to_cell._y2)//2)
+
             line = Line(self._center,to_cell._center)
             if undo:
                 line.draw(self._win.get_canvas(),fill_color='gray')

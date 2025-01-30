@@ -4,8 +4,8 @@ from maze import *
 
 
 def main():
-    num_rows = 5
-    num_cols = 5
+    num_rows = 20
+    num_cols = 20
     margin = 50
     screen_x = 800
     screen_y = 600
@@ -15,7 +15,12 @@ def main():
 
     maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win,seed=0)
 
+    res = maze.solve()
 
+    if res == True:
+        print("Maze Solved!")
+    else:
+        print("Unsolvable Maze...")
 
     '''Test drawing line from cell centers
 
