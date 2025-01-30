@@ -1,16 +1,42 @@
 from window import *
 from cell import *
+from maze import *
 
 
 def main():
-    win = Window(800, 600)
+    num_rows = 5
+    num_cols = 5
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
+    win = Window(screen_x, screen_y)
 
-    cell_L = Cell(200,600,200,400,win)
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win,seed=0)
+
+
+
+    '''Test drawing line from cell centers
+
+    cell_T = Cell(300,500,100,300,win)
     # cell_L.has_left_wall = 0
     # cell_L.has_bottom_wall = 0
     # cell_L.has_right_wall = 0
     # cell_L.has_top_wall = 0
-    cell_L.draw()
+    cell_T.draw() #provide x1,x2,y1,y2
+
+
+    cell_B = Cell(200,400,400,600,win)
+    cell_B.draw()
+
+    cell_R = Cell(500,700,300,500,win)
+    cell_R.draw()
+
+
+    cell_T.draw_move(cell_B) #red
+    cell_R.draw_move(cell_B,undo=True) #gray
+    '''
 
     '''
     #test points and line drawing
